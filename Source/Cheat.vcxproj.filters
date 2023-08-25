@@ -1,0 +1,325 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Util.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Aimbot.cpp">
+      <Filter>Modules\Aimbot</Filter>
+    </ClCompile>
+    <ClCompile Include="Triggerbot.cpp">
+      <Filter>Modules\Misc\Other\Triggerbot</Filter>
+    </ClCompile>
+    <ClCompile Include="ESP.cpp">
+      <Filter>Modules\Visuals\ESP</Filter>
+    </ClCompile>
+    <ClCompile Include="Misc.cpp">
+      <Filter>Modules\Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="ConVar.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="CEtags.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="HvH.cpp">
+      <Filter>Modules\Misc\Other\HvH</Filter>
+    </ClCompile>
+    <ClCompile Include="AutoAirblast.cpp">
+      <Filter>Modules\Misc\Other\Auto-Airblast</Filter>
+    </ClCompile>
+    <ClCompile Include="Styles.cpp">
+      <Filter>Modules\Visuals\Menu\Styles</Filter>
+    </ClCompile>
+    <ClCompile Include="CDraw.cpp">
+      <Filter>Modules\Visuals\Menu\CDraw</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu.cpp">
+      <Filter>Modules\Visuals\Menu\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Controls.cpp">
+      <Filter>Modules\Visuals\Menu\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="Sticky.cpp">
+      <Filter>Modules\Misc\Other\Auto-Sticky Detonate</Filter>
+    </ClCompile>
+    <ClCompile Include="Backtrack.cpp">
+      <Filter>Modules\Misc\Other\Backtrack</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Offsets.cpp">
+      <Filter>SDK\Game\Offsets</Filter>
+    </ClCompile>
+    <ClCompile Include="Client.cpp">
+      <Filter>SDK\Game\Hooks</Filter>
+    </ClCompile>
+    <ClCompile Include="Panels.cpp">
+      <Filter>SDK\Game\Hooks</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyValues.cpp">
+      <Filter>SDK\Cheat\Utils\KeyValues</Filter>
+    </ClCompile>
+    <ClCompile Include="CBaseEntity.cpp">
+      <Filter>SDK\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="CSignature.cpp">
+      <Filter>SDK\Cheat\Utils\Signature</Filter>
+    </ClCompile>
+    <ClCompile Include="CNetVars.cpp">
+      <Filter>SDK\Cheat\Utils\NetVars</Filter>
+    </ClCompile>
+    <ClCompile Include="CMat.cpp">
+      <Filter>Modules\Visuals\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="CDrawManager.cpp">
+      <Filter>SDK\Cheat\Utils\DrawManager</Filter>
+    </ClCompile>
+    <ClCompile Include="VMTHooks.cpp">
+      <Filter>SDK\Cheat\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Dependencies\MinHook\buffer.c">
+      <Filter>Dependencies\MinHook</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Dependencies\MinHook\hde\hde32.c">
+      <Filter>Dependencies\MinHook</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Dependencies\MinHook\hde\hde64.c">
+      <Filter>Dependencies\MinHook</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Dependencies\MinHook\trampoline.c">
+      <Filter>Dependencies\MinHook</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Dependencies\MinHook\hook.c">
+      <Filter>Dependencies\MinHook</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Aimbot.h">
+      <Filter>Modules\Aimbot</Filter>
+    </ClInclude>
+    <ClInclude Include="ESP.h">
+      <Filter>Modules\Visuals\ESP</Filter>
+    </ClInclude>
+    <ClInclude Include="Misc.h">
+      <Filter>Modules\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="HvH.h">
+      <Filter>Modules\Misc\Other\HvH</Filter>
+    </ClInclude>
+    <ClInclude Include="AutoAirblast.h">
+      <Filter>Modules\Misc\Other\Auto-Airblast</Filter>
+    </ClInclude>
+    <ClInclude Include="Styles.h">
+      <Filter>Modules\Visuals\Menu\Styles</Filter>
+    </ClInclude>
+    <ClInclude Include="CDraw.h">
+      <Filter>Modules\Visuals\Menu\CDraw</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyEnum.h">
+      <Filter>Modules\Visuals\Menu\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Draw utils.h">
+      <Filter>Modules\Visuals\Menu\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Icons.h">
+      <Filter>Modules\Visuals\Menu\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu.h">
+      <Filter>Modules\Visuals\Menu\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Controls.h">
+      <Filter>Modules\Visuals\Menu\Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="Sticky.h">
+      <Filter>Modules\Misc\Other\Auto-Sticky Detonate</Filter>
+    </ClInclude>
+    <ClInclude Include="Backtrack.h">
+      <Filter>Modules\Misc\Other\Backtrack</Filter>
+    </ClInclude>
+    <ClInclude Include="Triggerbot.h">
+      <Filter>Modules\Misc\Other\Triggerbot</Filter>
+    </ClInclude>
+    <ClInclude Include="SDK.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="WeaponList.h">
+      <Filter>SDK\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector.h">
+      <Filter>SDK\Cheat\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2.h">
+      <Filter>SDK\Cheat\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math.h">
+      <Filter>SDK\Cheat\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2D.h">
+      <Filter>SDK\Cheat\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Offsets.h">
+      <Filter>SDK\Game\Offsets</Filter>
+    </ClInclude>
+    <ClInclude Include="Client.h">
+      <Filter>SDK\Game\Hooks</Filter>
+    </ClInclude>
+    <ClInclude Include="Panels.h">
+      <Filter>SDK\Game\Hooks</Filter>
+    </ClInclude>
+    <ClInclude Include="CSignature.h">
+      <Filter>SDK\Cheat\Utils\Signature</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyValues.h">
+      <Filter>SDK\Cheat\Utils\KeyValues</Filter>
+    </ClInclude>
+    <ClInclude Include="CNetVars.h">
+      <Filter>SDK\Cheat\Utils\NetVars</Filter>
+    </ClInclude>
+    <ClInclude Include="CMat.h">
+      <Filter>Modules\Visuals\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="CDrawManager.h">
+      <Filter>SDK\Cheat\Utils\DrawManager</Filter>
+    </ClInclude>
+    <ClInclude Include="BytePatch.h">
+      <Filter>SDK\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="bspflags.h">
+      <Filter>SDK\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="CEtags.h">
+      <Filter>SDK\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="CGlobalVars.h">
+      <Filter>SDK\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Color.h">
+      <Filter>SDK\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="ConVar.h">
+      <Filter>SDK\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="cvwrapper.h">
+      <Filter>SDK\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="getvfunc.h">
+      <Filter>SDK\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Util.h">
+      <Filter>SDK\Cheat\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="studio.h">
+      <Filter>SDK\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Materials.h">
+      <Filter>SDK\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="VMTHooks.h">
+      <Filter>SDK\Cheat\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="WinAPI.h">
+      <Filter>SDK\Cheat</Filter>
+    </ClInclude>
+    <ClInclude Include="XorStr.h">
+      <Filter>SDK\Cheat</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source">
+      <UniqueIdentifier>{7561bd3e-f399-43c0-80fd-202de503f606}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules">
+      <UniqueIdentifier>{bd4db70f-c9e9-4991-848f-748551954a06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Aimbot">
+      <UniqueIdentifier>{4f190136-d775-450b-9049-6a6fdd0ab7a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Misc">
+      <UniqueIdentifier>{338f8ff1-8354-487f-9830-cc45a33039d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Visuals">
+      <UniqueIdentifier>{0309b6a1-6a7b-4093-9c62-ffcedcc9623a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Misc\Other">
+      <UniqueIdentifier>{fc2e12e0-4799-45a8-8c24-b7466d441d4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Misc\Other\HvH">
+      <UniqueIdentifier>{0112088d-3049-4d72-92c0-479950f066ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Misc\Other\Backtrack">
+      <UniqueIdentifier>{63f6c6aa-3d00-4a0c-8eb6-41466d8c399b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Misc\Other\Auto-Sticky Detonate">
+      <UniqueIdentifier>{a158b6f9-fb59-4dd7-b679-8620744acfb2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Misc\Other\Auto-Airblast">
+      <UniqueIdentifier>{36eafdf6-43d2-4489-8f42-7d951f9d8f05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Visuals\Menu">
+      <UniqueIdentifier>{3298774b-5601-4018-b823-c3765e1b6b11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Visuals\Menu\UI">
+      <UniqueIdentifier>{c7a3bf35-6f90-4de0-8ba8-4f835ca1d9d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Visuals\Menu\Styles">
+      <UniqueIdentifier>{d4ac3042-d889-4bcb-9d44-9a0b8ab677dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Visuals\Menu\Headers">
+      <UniqueIdentifier>{3b648864-959c-4c93-8b2a-d8621ec9237c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Visuals\Menu\CDraw">
+      <UniqueIdentifier>{f721f7a0-626a-4c91-9260-0742ab351f0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Visuals\Menu\Controls">
+      <UniqueIdentifier>{f2106817-43dd-442e-a813-1228ea4bc7c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Visuals\ESP">
+      <UniqueIdentifier>{3f8592fd-56b1-487a-bf76-227058a23a9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Misc\Other\Triggerbot">
+      <UniqueIdentifier>{d045afc8-c948-46e8-b3fa-9c7469fb9345}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SDK">
+      <UniqueIdentifier>{3195697c-9568-4390-87ee-1e1ab03131f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SDK\Game">
+      <UniqueIdentifier>{608b916c-02bd-4aca-b27a-4a15959cb627}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SDK\Cheat">
+      <UniqueIdentifier>{73c2cc8c-68fd-43ed-999d-20c380ff7d63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SDK\Cheat\Utils">
+      <UniqueIdentifier>{26e01968-7b24-4bab-a74b-0397251352d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SDK\Cheat\Math">
+      <UniqueIdentifier>{d7da6195-4759-44e3-8ae4-45a9f8659217}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SDK\Cheat\Utils\NetVars">
+      <UniqueIdentifier>{4076178f-2af9-4ae9-a5bb-a4cc89b52de5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SDK\Cheat\Utils\KeyValues">
+      <UniqueIdentifier>{17aca70c-b13d-4916-8bfd-6ee0a5e7ab8b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SDK\Game\Offsets">
+      <UniqueIdentifier>{165b7690-e218-4921-9c2a-6c973491c3dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SDK\Game\Hooks">
+      <UniqueIdentifier>{d6a374ac-cd23-430d-9892-968f4b3bc062}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SDK\Cheat\Utils\Signature">
+      <UniqueIdentifier>{fe59c5ec-d400-4c87-9cb7-5284974628fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Visuals\Materials">
+      <UniqueIdentifier>{78d7078d-9e2b-475c-8e97-4328ce07a6e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SDK\Cheat\Utils\DrawManager">
+      <UniqueIdentifier>{3f5cd4f2-5aa4-4232-8860-a07fd6e01fc7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependencies">
+      <UniqueIdentifier>{79b023fd-cbc8-41db-bfda-b06ff3b945f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependencies\MinHook">
+      <UniqueIdentifier>{ce336a2f-11ef-46b4-ba5b-67b403d0952e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
