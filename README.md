@@ -6,5 +6,3 @@ A NaCl paste made by username.mp4 and Reality / Trollsec.
 2. fix autoshoot
 3. playerlist
 4. config save and load
-5. crithack
-ambassing
