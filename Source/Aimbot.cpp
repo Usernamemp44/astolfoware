@@ -220,17 +220,6 @@ float CAimbot::GetFOV(Vector angle, Vector src, Vector dst)
 
 	return RAD2DEG(acos(u_dot_v / (pow(mag, 2))));
 }
-void sleepWithoutBlocking(int milliseconds) {
-	auto start = std::chrono::high_resolution_clock::now();
-	for (;;) {
-		auto now = std::chrono::high_resolution_clock::now();
-		auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(now - start).count();
-
-		if (elapsed >= milliseconds) {
-			break;
-		}
-	}
-}
 void CAimbot::Run(CBaseEntity* pLocal, CUserCmd* pCommand)
 {
 	Vector m_vOldViewAngle = pCommand->viewangles;
@@ -386,26 +375,24 @@ void CAimbot::Run(CBaseEntity* pLocal, CUserCmd* pCommand)
 	{
 		pCommand->buttons |= IN_ATTACK2;
 	}
-	std::chrono::high_resolution_clock::time_point lastActionTime = std::chrono::high_resolution_clock::now();
-
-	// Inside your loop or update function
-	std::chrono::high_resolution_clock::time_point currentTime = std::chrono::high_resolution_clock::now();
-	std::chrono::duration<double> timeElapsed = currentTime - lastActionTime;
 
 
 	if (Autoshoot.value)
 	{
+		float flCurTime = gInts.Engine->Time();
+		static float flNextSend = 0.0f;
 		if (pLocal->IsScoped() && pLocal->szGetClass() == "Sniper")
 		{
-			pCommand->buttons |= IN_ATTACK;
+			if (flCurTime > flNextSend)
+			{
+				pCommand->buttons |= IN_ATTACK;
+				flNextSend = (flCurTime + 2.0f); // this is retarded but fuck it 
+			}
 		}
-		
-		/*
-		if (pLocal->szGetClass() != "Sniper")
+		if (pLocal->szGetClass() != "Sniper") // yey
 		{
 			pCommand->buttons |= IN_ATTACK;
 		}
-		*/
 		if (GAME_CSS && gAim.autopistol.value)
 			gMisc.AutoPistol(pLocal, pCommand);
 	}

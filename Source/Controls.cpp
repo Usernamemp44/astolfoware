@@ -10,9 +10,10 @@ static TextureHolder colorpicker, brightness, picker_t;
 
 #define LTEXT SColor(220)
 #define BTEXT SColor(150)
-#define HTEXT SColor(255, 105, 180)
+#define HTEXT SColor(60, 140, 220)
 #define CTEXT SColor(180)
-#define BACKGR SColor(65, 65, 72)
+#define BACKGR SColor(240, 240, 240)
+
 
 void InitTextures()
 {

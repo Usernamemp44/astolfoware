@@ -53,6 +53,7 @@ std::string GetSpam(const int nIndex) {
 	case 0: str = XorStr("say Astolfoware - Step up the game with a boykisser cheat! ").str(); break;
 	case 1: str = XorStr("say Astolfoware - Way to the top!").str(); break;
 	case 2: str = XorStr("say Astolfoware - Based on NaCl!").str(); break;
+	case 3: str = XorStr("say dsc.gg/astolfoware").str(); break;
 	default: str = XorStr("say Astolfoware - Step up the game with a boykisser cheat!").str(); break;
 	}
 
@@ -121,7 +122,6 @@ void CMisc::Run(CBaseEntity* pLocal, CUserCmd* pCommand)
 			Global::OGCommand.viewangles.y = viewangles[1];
 		}
 	}
-
 	if (GAME_TF2 && speedcrouch.value && !(pCommand->buttons & IN_ATTACK) && (pCommand->buttons & IN_DUCK)) // who changed my comment >:(
 	{
 		Vector vLocalAngles = pCommand->viewangles;
@@ -149,11 +149,16 @@ void CMisc::Run(CBaseEntity* pLocal, CUserCmd* pCommand)
 	}
 	if (nspam.value)
 	{
-		PVOID kv = Utils::InitKeyValue();
-		if (kv != NULL)
+		// do nothing
+	}
+	if (niceshot.value)
+	{
+		float flCurTime = gInts.Engine->Time();
+		static float flNextSend = 0.0f;
+		if (flCurTime > flNextSend) // i only need nice shot so uhh
 		{
-			NoisemakerSpam(kv);
-			gInts.Engine->ServerCmdKeyValues(kv);
+			gInts.Engine->ClientCmd_Unrestricted("voicemenu 2 6");
+			flNextSend = (flCurTime + 3.0f);
 		}
 	}
 
@@ -194,11 +199,11 @@ void CMisc::Run(CBaseEntity* pLocal, CUserCmd* pCommand)
 	if (GAME_TF2 && chatspam.value) {
 		float flCurTime = gInts.Engine->Time();
 		static float flNextSend = 0.0f;
-
+		// this is not pasted xde
 		if (flCurTime > flNextSend) {
 			std::random_device rd;
-			std::mt19937 gen(rd());
-			std::uniform_int_distribution<> dis(0, 2);
+			std::mt19937 gen(rd()); 
+			std::uniform_int_distribution<> dis(0, 3);
 
 			int randomIndex = dis(gen);
 
@@ -206,22 +211,6 @@ void CMisc::Run(CBaseEntity* pLocal, CUserCmd* pCommand)
 			flNextSend = (flCurTime + 3.0f);
 		}
 	}
-}
-//Could be much simpler, but I don't want keyvals class
-void CMisc::NoisemakerSpam(PVOID kv) //Credits gir https://www.unknowncheats.me/forum/team-fortress-2-a/141108-infinite-noisemakers.html
-{
-	char chCommand[30] = "use_action_slot_item_server";
-	typedef int(__cdecl* HashFunc_t)(const char*, bool);
-	static DWORD dwHashFunctionLocation = gSignatures.GetClientSignature("FF 15 ? ? ? ? 83 C4 08 89 06 8B C6");
-	static HashFunc_t s_pfGetSymbolForString = (HashFunc_t) * *(PDWORD*)(dwHashFunctionLocation + 0x2);
-	*(PDWORD)((DWORD)kv + 0x4) = 0;
-	*(PDWORD)((DWORD)kv + 0x8) = 0;
-	*(PDWORD)((DWORD)kv + 0xC) = 0;
-	*(PDWORD)((DWORD)kv + 0x10) = /*0x10000*/0xDEADBEEF;
-	*(PDWORD)((DWORD)kv + 0x14) = 0;
-	*(PDWORD)((DWORD)kv + 0x18) = 0; //Extra one the game isn't doing, but if you don't zero this out, the game crashes.
-	*(PDWORD)((DWORD)kv + 0x1C) = 0;
-	*(PDWORD)((DWORD)kv + 0) = s_pfGetSymbolForString(chCommand, 1);
 }
 
 //pAAs

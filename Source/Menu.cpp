@@ -145,6 +145,7 @@ void Menu::CreateGUI()
 				new Groupbox("Spam & stuff :3",
 				{
 					&gMisc.chatspam,
+					&gMisc.niceshot,
 					&gMisc.nspam,
 				}, GROUP_WIDTH),
 

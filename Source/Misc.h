@@ -24,7 +24,7 @@ public:
 	Checkbox cscreenshots = Checkbox("Clean Screenshots");
 	Checkbox purebypass = Checkbox("Pure Bypass");
 	Checkbox chatspam = Checkbox("Chat spam");
-	Slider chatspaminterval = Slider("Spam my shit :3", 0, 0, 15, 1);
+	Checkbox niceshot = Checkbox("Nice shot!");
 	Checkbox fakecrouch = Checkbox("Fake crouch RIJIN!!!!");
 	Checkbox svcheats = Checkbox("Cheats bypass");
 	Checkbox bypasssrootlod = Checkbox("Bypass rootlod");
@@ -45,7 +45,7 @@ private:
 
 	//Other funcs
 
-	void NoisemakerSpam(PVOID kv);
+	//void NoisemakerSpam(PVOID kv); fak off
 	void AntiAim();
 	void AntiAim2();
 };
