@@ -8,3 +8,7 @@ A NaCl paste made by username.mp4 and Reality / Trollsec.
 4. config save and load
 5. crithack
 ambassing
+# Credits
+1. Reality (Main Dev,  owner of astolfoware)
+2. Username.mp4
+3. Callie
