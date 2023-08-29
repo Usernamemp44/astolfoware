@@ -386,7 +386,7 @@ void CAimbot::Run(CBaseEntity* pLocal, CUserCmd* pCommand)
 			if (flCurTime > flNextSend)
 			{
 				pCommand->buttons |= IN_ATTACK;
-				flNextSend = (flCurTime + 0.6f); // this is retarded but fuck it 
+				flNextSend = (flCurTime + 0.3f); // this is retarded but fuck it 
 			}
 		}
 		if (pLocal->szGetClass() != "Sniper") // yey
