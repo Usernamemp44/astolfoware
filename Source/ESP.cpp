@@ -227,7 +227,10 @@ void CESP::Player_ESP(CBaseEntity* pLocal, CBaseEntity* pEntity)
 			gDrawManager.DrawLine(screenForward.x, screenForward.y, screenEyepos.x, screenEyepos.y, clrPlayerCol);
 		}
 	}
-
+	if (fixesp.value)
+	{
+		gInts.Engine->ClientCmd_Unrestricted("hud_reloadscheme");
+	}
 	if (pLocal->IsAlive() && gMisc.backtrack.value && visualize_backtrack.value) {
 		if (backtrack::ticks[pEntity->GetIndex()].empty()) {
 			return;
