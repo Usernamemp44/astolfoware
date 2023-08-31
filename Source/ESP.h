@@ -10,7 +10,7 @@ public:
 	void FrameStageNotify(ClientFrameStage_t Stage);
 
 	Checkbox enabled = Checkbox("Enabled");
-	Checkbox fixesp = Checkbox("Fix ESP Breaking");
+	//Checkbox fixesp = Checkbox("Fix ESP Breaking");
 	Checkbox enemyonly = Checkbox("Enemy Only");
 	Listbox box = Listbox("Box", { "Disabled", "2D - Normal", "2D - Corner" }, 0);
 	Checkbox name = Checkbox("Name");

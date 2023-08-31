@@ -157,6 +157,9 @@ void CHvH::Run(CBaseEntity* pLocal, CUserCmd* pCommand)
 			angles.x = 271.0;
 		if (pitch.value == 4)//Down
 			angles.x = 89.0f;
+		if (pitch.value == 5) // random
+			angles.x = Utils::RandFloatRange(-180.0f, 180.0f);
+		// what else aa should i add honestly? Jitter?	
 	}
 
 	//Yaw Anti-Aims

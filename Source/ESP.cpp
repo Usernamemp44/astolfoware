@@ -76,7 +76,10 @@ void CESP::Player_ESP(CBaseEntity* pLocal, CBaseEntity* pEntity)
 	player_info_t pInfo;
 	if (!gInts.Engine->GetPlayerInfo(pEntity->GetIndex(), &pInfo))
 		return;
-
+	if (gInts.Engine->IsConnected())
+	{
+		gInts.Engine->ClientCmd_Unrestricted("hud_reloadscheme");
+	}
 	const matrix3x4& vMatrix = pEntity->GetRgflCoordinateFrame();
 
 	Vector vMin = pEntity->GetCollideableMins();
@@ -227,10 +230,6 @@ void CESP::Player_ESP(CBaseEntity* pLocal, CBaseEntity* pEntity)
 			gDrawManager.DrawLine(screenForward.x, screenForward.y, screenEyepos.x, screenEyepos.y, clrPlayerCol);
 		}
 	}
-	if (fixesp.value)
-	{
-		gInts.Engine->ClientCmd_Unrestricted("hud_reloadscheme");
-	}
 	if (pLocal->IsAlive() && gMisc.backtrack.value && visualize_backtrack.value) {
 		if (backtrack::ticks[pEntity->GetIndex()].empty()) {
 			return;
@@ -369,7 +368,7 @@ void CESP::DrawModelExecute(const DrawModelState_t &state, const ModelRenderInfo
 			gInts.ModelRender->ForcedMaterialOverride(NULL, OverrideType_t::OVERRIDE_NORMAL);
 		}
 	}
-
+	
 	if (player_enabled.value)
 	{
 		if (!(entity = GetBaseEntity(pInfo.entity_index)))
@@ -491,6 +490,8 @@ void CESP::FrameStageNotify(ClientFrameStage_t Stage)
 				mat->ColorModulate(blend[0], blend[1], blend[2]);
 				mat->AlphaModulate(blend[3]);
 			}
+		
+
 		}
 
 		worldmats_new.clear();	// Clear cache of materials

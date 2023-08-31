@@ -16,7 +16,6 @@
 #include "Misc.h"
 #include <cstdlib> // For getenv
 #include "HvH.h"
-
 CMisc gMisc;
 
 namespace Global {
@@ -24,8 +23,6 @@ namespace Global {
 	CUserCmd* Global::Command;
 	CUserCmd		Global::OGCommand;
 }
-
-
 
 std::string repeat(int n, const char* str)
 {
@@ -135,7 +132,6 @@ void CMisc::Run(CBaseEntity* pLocal, CUserCmd* pCommand)
 			pCommand->viewangles.z = 90.0f;
 		}
 	}
-
 	if (!(pLocal->GetFlags() & FL_ONGROUND) && pCommand->buttons & IN_JUMP)
 	{
 		//Autostrafe	
