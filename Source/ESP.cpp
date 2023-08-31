@@ -61,12 +61,12 @@ Color gaylol(CBaseEntity* pPlayer)
 
 Color GetHealthColor(CBaseEntity* pPlayer)
 {
-		if (pPlayer->GetHealth() > 100)
-			return Color(0, 255, 0, 255);
-		if (pPlayer->GetHealth() > 65)
-			return Color(55, 255, 0, 255);
-		if (pPlayer->GetHealth() > 35)
-			return Color(255, 20, 20, 255);
+	if (pPlayer->GetHealth() > 100)
+		return Color(0, 255, 0, 255);
+	if (pPlayer->GetHealth() > 65)
+		return Color(55, 255, 0, 255);
+	if (pPlayer->GetHealth() > 35)
+		return Color(255, 20, 20, 255);
 	return Color(255, 20, 20, 255);
 }
 
@@ -76,10 +76,7 @@ void CESP::Player_ESP(CBaseEntity* pLocal, CBaseEntity* pEntity)
 	player_info_t pInfo;
 	if (!gInts.Engine->GetPlayerInfo(pEntity->GetIndex(), &pInfo))
 		return;
-	if (gInts.Engine->IsConnected())
-	{
-		gInts.Engine->ClientCmd_Unrestricted("hud_reloadscheme");
-	}
+
 	const matrix3x4& vMatrix = pEntity->GetRgflCoordinateFrame();
 
 	Vector vMin = pEntity->GetCollideableMins();
@@ -112,7 +109,7 @@ void CESP::Player_ESP(CBaseEntity* pLocal, CBaseEntity* pEntity)
 		!gDrawManager.WorldToScreen(vTransformed[4], frt) ||
 		!gDrawManager.WorldToScreen(vTransformed[1], brb) ||
 		!gDrawManager.WorldToScreen(vTransformed[7], flt))
-		return; 
+		return;
 
 	Vector arr[] = { flb, brt, blb, frt, frb, brb, blt, flt };
 
@@ -215,7 +212,7 @@ void CESP::Player_ESP(CBaseEntity* pLocal, CBaseEntity* pEntity)
 		gDrawManager.DrawString(x + w + 2, y + iY, HealthColor, "%d HP", pEntity->GetHealth());
 		iY += gDrawManager.GetESPHeight();
 	}
-	
+
 	if (viewlines.value)
 	{
 		//Lines;
@@ -230,6 +227,7 @@ void CESP::Player_ESP(CBaseEntity* pLocal, CBaseEntity* pEntity)
 			gDrawManager.DrawLine(screenForward.x, screenForward.y, screenEyepos.x, screenEyepos.y, clrPlayerCol);
 		}
 	}
+
 	if (pLocal->IsAlive() && gMisc.backtrack.value && visualize_backtrack.value) {
 		if (backtrack::ticks[pEntity->GetIndex()].empty()) {
 			return;
@@ -315,7 +313,7 @@ static SColor colors_team_light[] =
 
 #include "Client.h"
 #include "CMat.h"
-void CESP::DrawModelExecute(const DrawModelState_t &state, const ModelRenderInfo_t &pInfo, matrix3x4 *pCustomBoneToWorld)
+void CESP::DrawModelExecute(const DrawModelState_t& state, const ModelRenderInfo_t& pInfo, matrix3x4* pCustomBoneToWorld)
 {
 	const char* pszModelName = gInts.ModelInfo->GetModelName((DWORD*)pInfo.pModel);
 	CBaseEntity* entity;
@@ -353,7 +351,7 @@ void CESP::DrawModelExecute(const DrawModelState_t &state, const ModelRenderInfo
 		CBaseEntity* pLocal = (CBaseEntity*)gInts.EntList->GetClientEntity(gInts.Engine->GetLocalPlayer());
 		SColor color = hand_mat_color.bDef ? colors_team_light[localteam] : hand_mat_color.color;
 
-		if (pLocal->IsAlive() && pLocal->GetHealth() > 0 && !pLocal->IsDormant()) 
+		if (pLocal->IsAlive() && pLocal->GetHealth() > 0 && !pLocal->IsDormant())
 		{
 			Color RGBA = gDrawManager.GetPlayerColor(pLocal);
 
@@ -368,7 +366,7 @@ void CESP::DrawModelExecute(const DrawModelState_t &state, const ModelRenderInfo
 			gInts.ModelRender->ForcedMaterialOverride(NULL, OverrideType_t::OVERRIDE_NORMAL);
 		}
 	}
-	
+
 	if (player_enabled.value)
 	{
 		if (!(entity = GetBaseEntity(pInfo.entity_index)))
@@ -445,7 +443,7 @@ void CESP::DrawModelExecute(const DrawModelState_t &state, const ModelRenderInfo
 }
 
 
-	 //My code, but creds to f1ssion for giving me the idea
+//My code, but creds to f1ssion for giving me the idea
 void CESP::DrawBone(CBaseEntity* pEntity, int* iBones, int count, Color clrCol)
 {
 	for (int i = 0; i < count; i++)
@@ -490,8 +488,6 @@ void CESP::FrameStageNotify(ClientFrameStage_t Stage)
 				mat->ColorModulate(blend[0], blend[1], blend[2]);
 				mat->AlphaModulate(blend[3]);
 			}
-		
-
 		}
 
 		worldmats_new.clear();	// Clear cache of materials
