@@ -150,6 +150,7 @@
     <ClInclude Include="cvwrapper.h" />
     <ClInclude Include="Draw utils.h" />
     <ClInclude Include="ESP.h" />
+    <ClInclude Include="FNV1A.h" />
     <ClInclude Include="getvfunc.h" />
     <ClInclude Include="HvH.h" />
     <ClInclude Include="Icons.h" />

@@ -77,6 +77,7 @@ void Menu::CreateGUI()
 				new Groupbox("ESP",{
 					&gESP.enabled,
 					//&gESP.fixesp,
+				
 					&gESP.enemyonly,
 					&gESP.box,
 					&gESP.name,
@@ -121,7 +122,7 @@ void Menu::CreateGUI()
 					&gMisc.cscreenshots,
 					&gMisc.svcheats,
 					&gMisc.bypasssrootlod,
-					
+					//&gMisc.killsay,
 				}, GROUP_WIDTH),
 
 				new Groupbox("Backtrack",
@@ -138,11 +139,7 @@ void Menu::CreateGUI()
 					&gMisc.warp_charge_key,
 					&gMisc.warp_value,
 				}, GROUP_WIDTH),
-				new Groupbox("Fakelag",
-				{
-					&gMisc.flag,
-					&gMisc.flagamount,
-				}, GROUP_WIDTH),
+				
 				new Groupbox("Spam & stuff :3",
 				{
 					&gMisc.chatspam,
@@ -167,7 +164,11 @@ void Menu::CreateGUI()
 				{
 					&gHvH.spinspeed,
 				}, GROUP_WIDTH),
-
+				new Groupbox("Fakelag",
+				{
+					&gMisc.flag,
+					&gMisc.flagamount,
+				}, GROUP_WIDTH),
 			})
 			);
 
@@ -176,7 +177,27 @@ void Menu::CreateGUI()
 				new DrawPanel("About Section", gMenu.style->About, scale.x - TAB_WIDTH - 32, scale.y - MENU_TOPBAR)
 			})
 			);
+		// erm erm krill yourself...
+		Tabs.AddTab(
+			new Tab("Spam", {
+				new Groupbox("Spam",
+				{
+					&gMisc.chatspam,
+					&gMisc.niceshot,
+					&gMisc.automicspam,
+				}, GROUP_WIDTH),
+				new Groupbox("Im retarded so",
+				{
+					&gMisc.niceshot,
+					&gMisc.medic,
+					&gMisc.helpme,
+				}, GROUP_WIDTH),
+			})
+			);
 	}
+	// =========================== CSS ======================
+	// Note: WE WILL NOT WORK ON CSS VERSION OF "astolfoware".
+	// ======================================================
 	else
 	{
 		if (GAME_CSS)

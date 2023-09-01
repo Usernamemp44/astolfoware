@@ -116,12 +116,18 @@ int Tab::Draw(bool mouseOver)
 {
 	SColor clr = enabled ? LTEXT : BTEXT;
 
+	// Calculate the new y coordinate to draw the tab at the bottom
+	int tabHeight = 30; // Adjust this value as needed
+	int bottomY = y + h - tabHeight;
+
 	if (mouseOver)
-		gDraw.DrawRect(x, y, w, h, SColor(18));
-	gDraw.DrawString(x + 20, y + 2, clr, name, gFonts.calibri_light);
+		gDraw.DrawRect(x, bottomY, w, tabHeight, SColor(18));
+
+	gDraw.DrawString(x + 20, bottomY + 2, clr, name, gFonts.calibri_light);
 
 	return h;
 }
+
 
 // ===== Groupbox =====
 

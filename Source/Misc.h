@@ -17,6 +17,7 @@ public:
 
 	Checkbox bhop = Checkbox("Bunnyhop");
 	Checkbox astrafer = Checkbox("Autostrafer");
+	Checkbox automicspam = Checkbox("Auto-Micspam");
 	Checkbox nspam = Checkbox("Noisemaker Spam");
 	Checkbox tauntslide = Checkbox("Taunt Slide");
 	Checkbox speedcrouch = Checkbox("Speed Crouch");
@@ -25,11 +26,13 @@ public:
 	Checkbox purebypass = Checkbox("Pure Bypass");
 	Checkbox chatspam = Checkbox("Chat spam");
 	Checkbox niceshot = Checkbox("Nice shot!");
+	Checkbox medic = Checkbox("MEDIICCCKKK");
+	Checkbox helpme = Checkbox("Help!");
 	Checkbox fakecrouch = Checkbox("Fake crouch RIJIN!!!!");
 	Checkbox svcheats = Checkbox("Cheats bypass");
 	Checkbox bypasssrootlod = Checkbox("Bypass rootlod");
-	Checkbox writejson = Checkbox("test");
 	Checkbox doubletap = Checkbox("Doubletap");
+	
 	Checkbox warp = Checkbox("Warp");
 	Listbox warp_key = Listbox("Warp Key", { "None", "Mouse 3", "Mouse 4", "Mouse 5", "Shift", "Alt", "F", "E" }, 0);
 	Listbox warp_charge_key = Listbox("Charge Key", { "None", "Mouse 3", "Mouse 4", "Mouse 5", "Shift", "Alt", "F", "E" }, 0);

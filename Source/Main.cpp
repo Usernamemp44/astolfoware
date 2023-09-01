@@ -58,7 +58,6 @@ DWORD WINAPI dwMainThread( LPVOID lpArguments  )
 
 	while (!GetAsyncKeyState(VK_END))
 		std::this_thread::sleep_for(std::chrono::milliseconds(350));
-
 	gMenu.enabled = false;
 	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 	MH_DisableHook(MH_ALL_HOOKS);

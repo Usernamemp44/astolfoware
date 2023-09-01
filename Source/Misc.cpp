@@ -8,14 +8,8 @@
 #include <string>
 #include <fstream>
 #include <map>
-#include "Menu.h"
-#include "CDraw.h"
-#include "Aimbot.h"
-#include "Triggerbot.h"
-#include "ESP.h"
-#include "Misc.h"
-#include <cstdlib> // For getenv
-#include "HvH.h"
+#include <cstdlib>
+#include "FNV1A.h"
 CMisc gMisc;
 
 namespace Global {
@@ -147,17 +141,65 @@ void CMisc::Run(CBaseEntity* pLocal, CUserCmd* pCommand)
 	{
 		// do nothing
 	}
+	/*
+	if (killsay.value)
+	{
+		if (FNV1A::HashConst("player_death"))
+		{
+			player_info_t pInfo;
+			gInts.Engine->GetPlayerInfo(pLocal->GetIndex(), &pInfo);
+			std::string command = "echo get one tapped lol " + std::string(pInfo.name);
+			gInts.Engine->ClientCmd_Unrestricted(command.c_str());
+		}
+	}
+	*/
+	// some retarded function that i wanted to do when i go 6 stack lmao
+	// mf too lazy to do +voicerecord;voice_loopback 1.. ~Reality
+	if (automicspam.value)
+	{
+		if (gInts.Engine->IsInGame())
+		{
+			gInts.Engine->ClientCmd_Unrestricted("+voicerecord;voice_loopback 1");
+		}
+	}
+	if (!automicspam.value)
+	{
+		if (gInts.Engine->IsInGame())
+		{
+			gInts.Engine->ClientCmd_Unrestricted("-voicerecord;voice_loopback 0");
+		}
+	}
+	// im too lazy to make a listbox, Meh.
 	if (niceshot.value)
 	{
 		float flCurTime = gInts.Engine->Time();
 		static float flNextSend = 0.0f;
-		if (flCurTime > flNextSend) // i only need nice shot so uhh
+		if (flCurTime > flNextSend) 
 		{
 			gInts.Engine->ClientCmd_Unrestricted("voicemenu 2 6");
 			flNextSend = (flCurTime + 3.0f);
 		}
 	}
-
+	if (medic.value)
+	{
+		float flCurTime = gInts.Engine->Time();
+		static float flNextSend = 0.0f;
+		if (flCurTime > flNextSend)
+		{
+			gInts.Engine->ClientCmd_Unrestricted("voicemenu 0 0");
+			flNextSend = (flCurTime + 3.0f);
+		}
+	}
+	if (helpme.value)
+	{
+		float flCurTime = gInts.Engine->Time();
+		static float flNextSend = 0.0f;
+		if (flCurTime > flNextSend)
+		{
+			gInts.Engine->ClientCmd_Unrestricted("voicemenu 2 0");
+			flNextSend = (flCurTime + 3.0f);
+		}
+	}
 	if (GAME_TF2 && nopush.value)
 	{
 		ConVar* tf_avoidteammates_pushaway = gInts.cvar->FindVar("tf_avoidteammates_pushaway");
