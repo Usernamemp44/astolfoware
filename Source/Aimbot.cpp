@@ -4,7 +4,9 @@
 #include "Client.h"
 #include <thread>
 #include "Math.h"
+#include "ignore.h"
 #include <chrono>
+
 
 // wtf is this shitty ass paste
 bool CAimbot::CanAmbassadorHeadshot(CBaseEntity* pLocal)
@@ -386,7 +388,7 @@ void CAimbot::Run(CBaseEntity* pLocal, CUserCmd* pCommand)
 			if (flCurTime > flNextSend)
 			{
 				pCommand->buttons |= IN_ATTACK;
-				flNextSend = (flCurTime + 0.3f); // this is retarded but fuck it 
+				flNextSend = (flCurTime + 0.2f); // this is retarded but fuck it 
 			}
 		}
 		if (pLocal->szGetClass() != "Sniper") // yey
@@ -468,7 +470,10 @@ int CAimbot::GetBestTarget(CBaseEntity* pLocal, CUserCmd* pCommand)
 
 			if (pEntity->GetCond() & TFCond_Disguised && ignoredisguised.value)
 				continue;
-
+			// Pasted from https://github.com/lawldotcfg/F1Public/blob/master/src/Util.h#L7
+			// Credits : lawldotcfg
+			if (ignorefriends.value && isPlayerOnFriendsList(pEntity->GetIndex()))
+				continue;
 			auto pWep = pLocal->GetActiveWeapon();
 			auto pClass = pWep->GetItemDefinitionIndex();
 			auto urmomgay = pClass == demomanweapons::WPN_Sword || pClass == demomanweapons::WPN_FestiveEyelander || pClass == demomanweapons::WPN_Golfclub || pClass == demomanweapons::WPN_ScottsSkullctter || pClass == demomanweapons::WPN_Headless;
@@ -491,8 +496,6 @@ int CAimbot::GetBestTarget(CBaseEntity* pLocal, CUserCmd* pCommand)
 
 					if (damage < 10.f)
 						return -1;
-
-
 				}
 				if (waitforcharge.value) //This isn't the best code but it works for raging.
 					if (waitforcharge.value && ZOOM_BASE_DAMAGE + damage < pEntity->GetHealth())//<

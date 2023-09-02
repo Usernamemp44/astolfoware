@@ -49,6 +49,7 @@ void Menu::CreateGUI()
 				new Groupbox("Ignore List",{
 					&gAim.ignorecloaked,
 					&gAim.ignoredisguised,
+					&gAim.ignorefriends,
 				}, GROUP_WIDTH),
 			})
 			);
@@ -140,12 +141,6 @@ void Menu::CreateGUI()
 					&gMisc.warp_value,
 				}, GROUP_WIDTH),
 				
-				new Groupbox("Spam & stuff :3",
-				{
-					&gMisc.chatspam,
-					&gMisc.niceshot,
-					&gMisc.nspam,
-				}, GROUP_WIDTH),
 
 			})
 			);

@@ -154,6 +154,7 @@
     <ClInclude Include="getvfunc.h" />
     <ClInclude Include="HvH.h" />
     <ClInclude Include="Icons.h" />
+    <ClInclude Include="ignore.h" />
     <ClInclude Include="KeyEnum.h" />
     <ClInclude Include="KeyValues.h" />
     <ClInclude Include="Materials.h" />

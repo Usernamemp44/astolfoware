@@ -226,6 +226,9 @@
     <ClInclude Include="FNV1A.h">
       <Filter>SDK\Cheat</Filter>
     </ClInclude>
+    <ClInclude Include="ignore.h">
+      <Filter>SDK\Cheat</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source">
