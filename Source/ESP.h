@@ -14,6 +14,7 @@ public:
 	Checkbox enemyonly = Checkbox("Enemy Only");
 	Listbox box = Listbox("Box", { "Disabled", "2D - Normal", "2D - Corner" }, 0);
 	Checkbox name = Checkbox("Name");
+	//Checkbox friendesp = Checkbox("Friend ESP");
 	Checkbox tfclass = Checkbox("Class");
 	Listbox health = Listbox("Health", { "Disabled", "Value", "Bar", "Both" }, 0);
 	Checkbox bones = Checkbox("Bones");

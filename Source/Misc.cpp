@@ -155,20 +155,7 @@ void CMisc::Run(CBaseEntity* pLocal, CUserCmd* pCommand)
 	*/
 	// some retarded function that i wanted to do when i go 6 stack lmao
 	// mf too lazy to do +voicerecord;voice_loopback 1.. ~Reality
-	if (automicspam.value)
-	{
-		if (gInts.Engine->IsInGame())
-		{
-			gInts.Engine->ClientCmd_Unrestricted("+voicerecord;voice_loopback 1");
-		}
-	}
-	if (!automicspam.value)
-	{
-		if (gInts.Engine->IsInGame())
-		{
-			gInts.Engine->ClientCmd_Unrestricted("-voicerecord;voice_loopback 0");
-		}
-	}
+	
 	// im too lazy to make a listbox, Meh.
 	if (niceshot.value)
 	{

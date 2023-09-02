@@ -77,8 +77,7 @@ void Menu::CreateGUI()
 			new Tab("Visuals", {
 				new Groupbox("ESP",{
 					&gESP.enabled,
-					//&gESP.fixesp,
-				
+					//&gESP.friendesp,
 					&gESP.enemyonly,
 					&gESP.box,
 					&gESP.name,

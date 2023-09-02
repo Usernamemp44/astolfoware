@@ -25,6 +25,7 @@ namespace Utils
 	Vector EstimateAbsVelocity(CBaseEntity *ent);
 	float RandFloatRange(float min, float max);
 	void* InitKeyValue();
+	
 
 	template <typename T>
 	inline void GetInterface(T& Interface, const char* szModuleName, const char* szInterfaceName)
