@@ -14,6 +14,7 @@ public:
 	Checkbox enemyonly = Checkbox("Enemy Only");
 	Listbox box = Listbox("Box", { "Disabled", "2D - Normal", "2D - Corner" }, 0);
 	Checkbox name = Checkbox("Name");
+	//Checkbox friendesp = Checkbox("Friend ESP");
 	Checkbox tfclass = Checkbox("Class");
 	Listbox health = Listbox("Health", { "Disabled", "Value", "Bar", "Both" }, 0);
 	Checkbox bones = Checkbox("Bones");
@@ -40,7 +41,7 @@ public:
 	ColorPicker sky_clr = ColorPicker("Sky Color", SColor(200));
 
 
-	void DrawModelExecute(const DrawModelState_t& state, const ModelRenderInfo_t& pInfo, matrix3x4* pCustomBoneToWorld);
+	void DrawModelExecute(const DrawModelState_t &state, const ModelRenderInfo_t &pInfo, matrix3x4 *pCustomBoneToWorld);
 
 private:
 
@@ -52,4 +53,4 @@ private:
 	void DrawFace(CBaseEntity* pEntity, Color clr);
 };
 
-extern CESP gESP;
+extern CESP gESP; 

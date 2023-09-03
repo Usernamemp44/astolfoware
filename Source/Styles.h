@@ -1,11 +1,5 @@
 #pragma once
-#include "Styles.h"
-#include "CDraw.h"
-#include "CDrawManager.h"
-#include "Misc.h"
-#include "Util.h"
-#include "Client.h"
-#include "FNV1A.h"
+
 class WindowStyle
 {
 public:

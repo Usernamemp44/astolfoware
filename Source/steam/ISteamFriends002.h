@@ -32,7 +32,6 @@ public:
 	virtual void SetPersonaName( const char *pchPersonaName ) = 0;
 	// gets the friend status of the current user
 	virtual EPersonaState GetPersonaState() = 0;
-	virtual bool SetRichPresence(const char* pchKey, const char* pchValue) = 0;
 	// sets the status, communicates to server, tells all friends
 	virtual void SetPersonaState( EPersonaState ePersonaState ) = 0;
 
