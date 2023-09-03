@@ -1,6 +1,10 @@
 #include "Styles.h"
 #include "CDraw.h"
 #include "CDrawManager.h"
+#include "Misc.h"
+#include "Util.h"
+#include "Client.h"
+#include "FNV1A.h"
 
 int DefaultStyle::ControlPanel(int x, int y, int w, int h, const char* name)
 {
