@@ -67,7 +67,7 @@ bool __fastcall Hooked_CreateMove(void* ecx, void* edx, float input_sample_frame
 		}
 
 
-
+		
 		gMisc.Run(pLocal, pCommand);
 
 		oCreateMove(ecx, edx, input_sample_frametime, pCommand);

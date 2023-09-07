@@ -115,6 +115,7 @@ void Menu::CreateGUI()
 					&gMisc.bhop,
 					&gMisc.astrafer,
 					&gMisc.fakecrouch,
+					&gMisc.shithead,
 					&gMisc.tauntslide,
 					&gMisc.speedcrouch,
 					&gMisc.nopush,
@@ -177,8 +178,6 @@ void Menu::CreateGUI()
 				new Groupbox("Spam",
 				{
 					&gMisc.chatspam,
-					&gMisc.niceshot,
-					&gMisc.automicspam,
 				}, GROUP_WIDTH),
 				new Groupbox("Im retarded so",
 				{

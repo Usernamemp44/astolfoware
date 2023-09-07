@@ -5,20 +5,21 @@ namespace Global {
 	extern CBaseEntity*	Local;
 	extern CUserCmd*	Command;
 	extern CUserCmd		OGCommand;
+	extern CBaseEntity* Entity;
 }
 
 class CMisc
 {
 public:
 
-	void Run(CBaseEntity* pLocal, CUserCmd* pCommand);
 	void AutoPistol(CBaseEntity* pLocal, CUserCmd* pCommand);
+	void killyourselfcpp(CBaseEntity* pEntity);
+	void Run(CBaseEntity* pLocal, CUserCmd* pCommand);
 	bool CanShoot();
 
 	Checkbox bhop = Checkbox("Bunnyhop");
+	Checkbox shithead = Checkbox("Hackusate People :troll:");
 	Checkbox astrafer = Checkbox("Autostrafer");
-	Checkbox automicspam = Checkbox("Auto-Micspam");
-	Checkbox nspam = Checkbox("Noisemaker Spam");
 	Checkbox tauntslide = Checkbox("Taunt Slide");
 	Checkbox speedcrouch = Checkbox("Speed Crouch");
 	Checkbox nopush = Checkbox("No Push");

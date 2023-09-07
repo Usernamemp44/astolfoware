@@ -3,6 +3,7 @@
 #include "SDK.h"
 #include "Detours.h"
 
+
 class CGlobalzz {
 public:
 	CBaseEntity* local{};

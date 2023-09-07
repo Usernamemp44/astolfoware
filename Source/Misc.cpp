@@ -16,6 +16,7 @@ namespace Global {
 	CBaseEntity* Global::Local;
 	CUserCmd* Global::Command;
 	CUserCmd		Global::OGCommand;
+	CBaseEntity* Global::Entity;
 }
 
 std::string repeat(int n, const char* str)
@@ -36,6 +37,7 @@ bool CMisc::CanShoot()
 
 	return (pWeapon->GetNextPrimaryAttack() < g.local->TickBase() * gInts.globals->interval_per_tick);
 }
+
 std::string GetSpam(const int nIndex) {
 	std::string str;
 
@@ -75,19 +77,53 @@ void CMisc::AutoPistol(CBaseEntity* pLocal, CUserCmd* pCommand)
 		}
 	}
 }
-
+void CMisc::killyourselfcpp(CBaseEntity* pEntity)
+{
+	float flCurTime = gInts.Engine->Time();
+	static float flNextSend = 0.0f;
+	player_info_t pInfo;
+	if (!gInts.Engine->GetPlayerInfo(pEntity->GetIndex(), &pInfo))
+		return;
+	std::string fucku = "say \"" + std::string(pInfo.name) + " is hacking, Please kick!\"";
+	if (flCurTime > flNextSend)
+	{
+		gInts.Engine->ClientCmd_Unrestricted(fucku.c_str());
+		flNextSend = (flCurTime + 8.0f);
+	}
+}
 void CMisc::Run(CBaseEntity* pLocal, CUserCmd* pCommand)
 {
 
 	if (!pLocal->IsAlive())
 		return;
+	if (shithead.value)
+	{
+		// lol i had to do was this. I dont know what this does btw,
+		// the only thing i know what it does it is define pEntity the right way, and run the hackusation void.
+		for (int i = 1; i <= gInts.Engine->GetMaxClients(); i++)
+		{
+			if (i == me)
+				continue;
 
+			CBaseEntity* pEntity = GetBaseEntity(i);
+
+			if (!pEntity)
+				continue;
+
+			if (pEntity->IsDormant())
+				continue;
+
+			if (pEntity->GetLifeState() != LIFE_ALIVE)
+				continue;
+
+			killyourselfcpp(pEntity);
+		}
+	}
 	if (GAME_CSS && gAim.antirecoil.value)
 	{
 		Vector AimPunch = pLocal->GetVecPunchAngle();
 		pCommand->viewangles -= (AimPunch * 2.f);
 	}
-
 	if (gAim.autopistol.value)
 		AutoPistol(pLocal, pCommand);
 
@@ -137,34 +173,14 @@ void CMisc::Run(CBaseEntity* pLocal, CUserCmd* pCommand)
 		if (bhop.value)
 			pCommand->buttons &= ~IN_JUMP;
 	}
-	if (nspam.value)
-	{
-		// do nothing
-	}
-	/*
-	if (killsay.value)
-	{
-		if (FNV1A::HashConst("player_death"))
-		{
-			player_info_t pInfo;
-			gInts.Engine->GetPlayerInfo(pLocal->GetIndex(), &pInfo);
-			std::string command = "echo get one tapped lol " + std::string(pInfo.name);
-			gInts.Engine->ClientCmd_Unrestricted(command.c_str());
-		}
-	}
-	*/
-	// some retarded function that i wanted to do when i go 6 stack lmao
-	// mf too lazy to do +voicerecord;voice_loopback 1.. ~Reality
-	
-	// im too lazy to make a listbox, Meh.
 	if (niceshot.value)
 	{
 		float flCurTime = gInts.Engine->Time();
 		static float flNextSend = 0.0f;
-		if (flCurTime > flNextSend) 
+		if (flCurTime > flNextSend)
 		{
 			gInts.Engine->ClientCmd_Unrestricted("voicemenu 2 6");
-			flNextSend = (flCurTime + 3.0f);
+			flNextSend = (flCurTime + 8.0f);
 		}
 	}
 	if (medic.value)
@@ -174,7 +190,7 @@ void CMisc::Run(CBaseEntity* pLocal, CUserCmd* pCommand)
 		if (flCurTime > flNextSend)
 		{
 			gInts.Engine->ClientCmd_Unrestricted("voicemenu 0 0");
-			flNextSend = (flCurTime + 3.0f);
+			flNextSend = (flCurTime + 8.0f);
 		}
 	}
 	if (helpme.value)
@@ -184,7 +200,7 @@ void CMisc::Run(CBaseEntity* pLocal, CUserCmd* pCommand)
 		if (flCurTime > flNextSend)
 		{
 			gInts.Engine->ClientCmd_Unrestricted("voicemenu 2 0");
-			flNextSend = (flCurTime + 3.0f);
+			flNextSend = (flCurTime + 8.0f);
 		}
 	}
 	if (GAME_TF2 && nopush.value)
@@ -219,23 +235,22 @@ void CMisc::Run(CBaseEntity* pLocal, CUserCmd* pCommand)
 		}
 		gInts.Engine->ClientCmd_Unrestricted("r_rootlod 7");
 	}
-
-	
 	if (GAME_TF2 && chatspam.value) {
 		float flCurTime = gInts.Engine->Time();
 		static float flNextSend = 0.0f;
 		// this is not pasted xde
 		if (flCurTime > flNextSend) {
 			std::random_device rd;
-			std::mt19937 gen(rd()); 
+			std::mt19937 gen(rd());
 			std::uniform_int_distribution<> dis(0, 3);
 
 			int randomIndex = dis(gen);
 
 			gInts.Engine->ClientCmd_Unrestricted(GetSpam(randomIndex).c_str());
-			flNextSend = (flCurTime + 3.0f);
+			flNextSend = (flCurTime + 8.0f); // you will get insta chatbanned if you dont wait for 8.0f!
 		}
 	}
+
 }
 
 //pAAs

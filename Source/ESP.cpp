@@ -43,26 +43,20 @@ void CESP::Run(CBaseEntity* pLocal)
 	}
 }
 
+
 Color gaylol(CBaseEntity* pPlayer)
 {
 	switch (pPlayer->GetTeamNum())
 	{
-		// fak blu and red esp all my homies have Color::Rainbow
+	case 2: //RED
+		return Color(255, 165, 0, 255);
+	case 3: //BLU
+		return Color(255, 165, 0, 255);
 	default:
-		static uint32_t cnt = 0;
-		float freq = .001f;
-
-		Color color = Color(
-			std::sin(freq * cnt + 0) * 127 + 128,
-			std::sin(freq * cnt + 2) * 127 + 128,
-			std::sin(freq * cnt + 4) * 127 + 128,
-			255);
-
-		// Probably redundant
-		if (cnt++ >= (uint32_t)-1) cnt = 0;
-
-		return color;
+		return Color(255, 165, 0, 255);
 	}
+
+	return Color(0, 0, 0, 0);
 }
 
 Color GetHealthColor(CBaseEntity* pPlayer)
@@ -137,17 +131,10 @@ void CESP::Player_ESP(CBaseEntity* pLocal, CBaseEntity* pEntity)
 	}
 
 	Color clrTeam = Color(255, 255, 255, 255);
-	static uint32_t cnt = 0;
-	float freq = .001f;
-	Color color = Color(
-		std::sin(freq * cnt + 0) * 127 + 128,
-		std::sin(freq * cnt + 2) * 127 + 128,
-		std::sin(freq * cnt + 4) * 127 + 128,
-		255);
-
-	// Probably redundant
-	if (cnt++ >= (uint32_t)-1) cnt = 0;
-	clrTeam = color;
+	if (pEntity->GetTeamNum() == 2)
+		clrTeam = Color(255, 20, 20, 255); //red
+	else if (pEntity->GetTeamNum() == 3)
+		clrTeam = Color(0, 153, 255, 255);//blue
 
 
 	float x = left;
@@ -171,8 +158,8 @@ void CESP::Player_ESP(CBaseEntity* pLocal, CBaseEntity* pEntity)
 
 	if (box.value == 1)
 	{
-		gDrawManager.OutlineRect(x, y, w, h, Color::Rainbow());
-		gDrawManager.OutlineRect(x + 1, y + 1, w - 2, h - 2, Color::Rainbow());
+		gDrawManager.OutlineRect(x, y, w, h, clrPlayerCol);
+		gDrawManager.OutlineRect(x + 1, y + 1, w - 2, h - 2, clrPlayerCol);
 	}
 	else if (box.value == 2)
 	{
@@ -205,23 +192,23 @@ void CESP::Player_ESP(CBaseEntity* pLocal, CBaseEntity* pEntity)
 	if (health.value == 2 || health.value == 3)
 	{
 		gDrawManager.OutlineRect(x - 6, y - 1, 5, h, Color::Black());
-		gDrawManager.DrawRect(x - 5, y + (h - (h / iMaxHp * iHp)) - 1, 3, h / iMaxHp * iHp, Color::Rainbow());
+		gDrawManager.DrawRect(x - 5, y + (h - (h / iMaxHp * iHp)) - 1, 3, h / iMaxHp * iHp, Color::Green());
 	}
 
 	if (name.value)
 	{
-		gDrawManager.DrawString(x + w + 2, y + iY, Color::Rainbow(), pInfo.name);
+		gDrawManager.DrawString(x + w + 2, y + iY, clrPlayerCol, pInfo.name);
 		iY += gDrawManager.GetESPHeight();
 	}
 	if (GAME_TF2 && tfclass.value)
 	{
-		gDrawManager.DrawString(x + w + 2, y + iY, Color::Rainbow(), "%s", pEntity->szGetClass());
+		gDrawManager.DrawString(x + w + 2, y + iY, clrPlayerCol, "%s", pEntity->szGetClass());
 		iY += gDrawManager.GetESPHeight();
 	}
 
 	if (health.value == 1 || health.value == 3)
 	{
-		gDrawManager.DrawString(x + w + 2, y + iY, Color::Rainbow(), "%d HP", pEntity->GetHealth());
+		gDrawManager.DrawString(x + w + 2, y + iY, HealthColor, "%d HP", pEntity->GetHealth());
 		iY += gDrawManager.GetESPHeight();
 	}
 
