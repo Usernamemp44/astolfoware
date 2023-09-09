@@ -1,4 +1,5 @@
 #include "CDrawManager.h"
+#include "ESP.h"
 //===================================================================================
 CDrawManager gDrawManager;
 

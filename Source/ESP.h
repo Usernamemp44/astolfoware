@@ -12,6 +12,9 @@ public:
 	Checkbox enabled = Checkbox("Enabled");
 	//Checkbox fixesp = Checkbox("Fix ESP Breaking");
 	Checkbox enemyonly = Checkbox("Enemy Only");
+	Checkbox localplayer = Checkbox("Local Player");
+	ColorPicker player_RED = ColorPicker("RED ESP Color", SColor(255, 20, 20, 255));
+	ColorPicker player_BLU = ColorPicker("BLU ESP Color", SColor(0, 153, 255, 255));
 	Listbox box = Listbox("Box", { "Disabled", "2D - Normal", "2D - Corner" }, 0);
 	Checkbox name = Checkbox("Name");
 	//Checkbox friendesp = Checkbox("Friend ESP");

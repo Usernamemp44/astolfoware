@@ -30,14 +30,17 @@ void CESP::Run(CBaseEntity* pLocal)
 		if (pEntity->GetLifeState() != LIFE_ALIVE)
 			continue;
 
-		if (enemyonly.value && pEntity->GetTeamNum() == pLocal->GetTeamNum())
-			continue;
-
 		if (ignorecloaked.value && pEntity->GetCond() & TFCond_Cloaked)
 			continue;
 
 		if (ignoredisguised.value && pEntity->GetCond() & TFCond_Disguised)
 			continue;
+
+		if (enemyonly.value && pEntity->GetTeamNum() == pLocal->GetTeamNum())
+		{ 
+			if (pEntity != pLocal)
+				continue;
+		}
 
 		Player_ESP(pLocal, pEntity);
 	}
@@ -130,13 +133,6 @@ void CESP::Player_ESP(CBaseEntity* pLocal, CBaseEntity* pEntity)
 			bottom = arr[i].y;
 	}
 
-	Color clrTeam = Color(255, 255, 255, 255);
-	if (pEntity->GetTeamNum() == 2)
-		clrTeam = Color(255, 20, 20, 255); //red
-	else if (pEntity->GetTeamNum() == 3)
-		clrTeam = Color(0, 153, 255, 255);//blue
-
-
 	float x = left;
 	float y = bottom;
 	float w = right - left;
@@ -146,14 +142,46 @@ void CESP::Player_ESP(CBaseEntity* pLocal, CBaseEntity* pEntity)
 	w -= ((right - left) / 8) * 2;
 
 	Color Orange = gaylol(pEntity);
-	Color clrPlayerCol = gDrawManager.GetPlayerColor(pEntity);
+
+	Color clrPlayerCol;
+
+	if (gCvars.esp_aimbothighlights && pEntity->GetIndex() == gCvars.iAimbotIndex)
+		clrPlayerCol = Color::Green();
+	else if (!gCvars.PlayerMode[pEntity->GetIndex()])
+		clrPlayerCol = Color(0, 255, 255, 255);
+	else if (gCvars.PlayerMode[pEntity->GetIndex()] == 2)
+		clrPlayerCol = Color::Yellow();
+	else
+	{
+
+		switch (pEntity->GetTeamNum())
+		{
+		case 2: //RED
+			clrPlayerCol = Color(gESP.player_RED.color[0], gESP.player_RED.color[1], gESP.player_RED.color[2], gESP.player_RED.color[3]);
+			break;
+		case 3: //BLU
+			clrPlayerCol = Color(gESP.player_BLU.color[0], gESP.player_BLU.color[1], gESP.player_BLU.color[2], gESP.player_BLU.color[3]);
+			break;
+		default:
+			clrPlayerCol = Color(255, 255, 255, 255);
+			break;
+		}
+
+		if (gESP.localplayer.value != true)
+		{
+			if (pLocal == pEntity)
+			{
+				clrPlayerCol = Color(0, 0, 0, 0);
+			}
+		}
+	}
+
 	Color clrBoneCol = Color::White();
 	int iY = 0;
 	//iHp is only for health bar
 	int iHp = pEntity->GetHealth(), iMaxHp = pEntity->GetMaxHealth();
 	if (iHp > iMaxHp)
 		iHp = iMaxHp;
-
 
 
 	if (box.value == 1)
