@@ -356,8 +356,7 @@ void Menu::Draw()
 #pragma endregion
 
 #pragma region Main window
-	// Topbar + outline
-	int topbar = style->TopBar(pos.x, pos.y, scale.x, "Astolfoware");
+		int topbar = style->TopBar(pos.x, pos.y, scale.x, "Astolfoware");
 	gDraw.OutlineRect(pos.x - 1, pos.y - 1, scale.x + 2, scale.y + topbar + 2, SColor(0));
 
 	if (pos.x < 0)
@@ -373,10 +372,11 @@ void Menu::Draw()
 	POINT _pos = { pos.x, pos.y + topbar };
 
 	// Tab region
-	gDraw.DrawRect(_pos.x, _pos.y, TAB_WIDTH, scale.y, SColor(22, 23, 24));
+	gDraw.DrawRect(_pos.x, _pos.y, TAB_WIDTH, scale.y, SColor(60, 60, 70)); // dark gray background
 	gDraw.DrawLine(_pos.x + TAB_WIDTH - 1, _pos.y, _pos.x + TAB_WIDTH - 1, _pos.y + scale.y, SColor(0));
-	//gDraw.DrawString(_pos.x + 10, _pos.y + scale.y - 32, SColor(120, 120), "- 0.1 beta - ", gFonts.verdana_bold);
-	gDraw.DrawString(_pos.x + 10, _pos.y + scale.y - 18, SColor(120, 120), "Build: " __DATE__, gFonts.verdana_bold);
+
+	// Text in the tab region
+	gDraw.DrawString(_pos.x + 10, _pos.y + scale.y - 18, SColor(200, 200, 200), "Build: " __DATE__, gFonts.verdana_bold); // light text color
 
 	Tabs.SetPos(_pos.x, _pos.y + topbar);
 	Tabs.SetWidth(TAB_WIDTH);
@@ -384,7 +384,7 @@ void Menu::Draw()
 	Tabs.Draw(false);
 
 	// Control region
-	gDraw.DrawRect(_pos.x + TAB_WIDTH, _pos.y, scale.x - TAB_WIDTH, scale.y, SColor(36, 36, 42));
+	gDraw.DrawRect(_pos.x + TAB_WIDTH, _pos.y, scale.x - TAB_WIDTH, scale.y, SColor(44, 44, 55)); // bckground
 	// Dividing line
 	gDraw.DrawLine(_pos.x, _pos.y, _pos.x + scale.x, _pos.y, SColor(0));
 
