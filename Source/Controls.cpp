@@ -116,8 +116,7 @@ int Tab::Draw(bool mouseOver)
 {
 	SColor clr = enabled ? LTEXT : BTEXT;
 
-	// Calculate the new y coordinate to draw the tab at the bottom
-	int tabHeight = 30; // Adjust this value as needed
+	int tabHeight = 30; 
 	int bottomY = y + h - tabHeight;
 
 	if (mouseOver)
