@@ -36,11 +36,9 @@ void CESP::Run(CBaseEntity* pLocal)
 		if (ignoredisguised.value && pEntity->GetCond() & TFCond_Disguised)
 			continue;
 
-		if (enemyonly.value && pEntity->GetTeamNum() == pLocal->GetTeamNum())
-		{ 
-			if (pEntity != pLocal)
-				continue;
-		}
+		if (enemyonly.value && pEntity->GetTeamNum() == pLocal->GetTeamNum() && pEntity != pLocal)
+			continue;
+		
 
 		Player_ESP(pLocal, pEntity);
 	}
@@ -62,8 +60,11 @@ Color gaylol(CBaseEntity* pPlayer)
 	return Color(0, 0, 0, 0);
 }
 
-Color GetHealthColor(CBaseEntity* pPlayer)
+Color GetHealthColor(CBaseEntity* pPlayer, CBaseEntity* pLocal)
 {
+	if (gESP.localplayer.value != true && pPlayer == pLocal)
+		return Color(0, 0, 0, 0);
+
 	if (pPlayer->GetHealth() > 100)
 		return Color(0, 255, 0, 255);
 	if (pPlayer->GetHealth() > 65)
@@ -75,7 +76,7 @@ Color GetHealthColor(CBaseEntity* pPlayer)
 
 void CESP::Player_ESP(CBaseEntity* pLocal, CBaseEntity* pEntity)
 {
-	Color HealthColor = GetHealthColor(pEntity);
+	Color HealthColor = GetHealthColor(pEntity, pLocal);
 	player_info_t pInfo;
 	if (!gInts.Engine->GetPlayerInfo(pEntity->GetIndex(), &pInfo))
 		return;
@@ -167,12 +168,9 @@ void CESP::Player_ESP(CBaseEntity* pLocal, CBaseEntity* pEntity)
 			break;
 		}
 
-		if (gESP.localplayer.value != true)
+		if (gESP.localplayer.value != true && pLocal == pEntity)
 		{
-			if (pLocal == pEntity)
-			{
-				clrPlayerCol = Color(0, 0, 0, 0);
-			}
+			clrPlayerCol = Color(0, 0, 0, 0);
 		}
 	}
 
@@ -219,8 +217,17 @@ void CESP::Player_ESP(CBaseEntity* pLocal, CBaseEntity* pEntity)
 
 	if (health.value == 2 || health.value == 3)
 	{
-		gDrawManager.OutlineRect(x - 6, y - 1, 5, h, Color::Black());
-		gDrawManager.DrawRect(x - 5, y + (h - (h / iMaxHp * iHp)) - 1, 3, h / iMaxHp * iHp, Color::Green());
+		if (pEntity != pLocal)
+		{
+			gDrawManager.OutlineRect(x - 6, y - 1, 5, h, Color::Black());
+			gDrawManager.DrawRect(x - 5, y + (h - (h / iMaxHp * iHp)) - 1, 3, h / iMaxHp * iHp, Color::Green());
+		}
+
+		if (localplayer.value && pEntity == pLocal)
+		{
+			gDrawManager.OutlineRect(x - 6, y - 1, 5, h, Color::Black());
+			gDrawManager.DrawRect(x - 5, y + (h - (h / iMaxHp * iHp)) - 1, 3, h / iMaxHp * iHp, Color::Green());
+		}
 	}
 
 	if (name.value)
@@ -308,13 +315,27 @@ void CESP::Player_ESP(CBaseEntity* pLocal, CBaseEntity* pEntity)
 		static int iLeftLegBones[] = { 14, 13, 1 };
 		static int iRightLegBones[] = { 17, 16, 1 };
 
-		DrawBone(pEntity, iLeftArmBones, 4, Color::Rainbow());
-		DrawBone(pEntity, iRightArmBones, 4, Color::Rainbow());
+		if (pEntity != pLocal)
+		{
+			DrawBone(pEntity, iLeftArmBones, 4, Color::Rainbow());
+			DrawBone(pEntity, iRightArmBones, 4, Color::Rainbow());
 
-		DrawBone(pEntity, iHeadBones, 3, Color::Rainbow());
+			DrawBone(pEntity, iHeadBones, 3, Color::Rainbow());
 
-		DrawBone(pEntity, iLeftLegBones, 3, Color::Rainbow());
-		DrawBone(pEntity, iRightLegBones, 3, Color::Rainbow());
+			DrawBone(pEntity, iLeftLegBones, 3, Color::Rainbow());
+			DrawBone(pEntity, iRightLegBones, 3, Color::Rainbow());
+		}
+
+		if (localplayer.value && pEntity == pLocal)
+		{
+			DrawBone(pEntity, iLeftArmBones, 4, Color::Rainbow());
+			DrawBone(pEntity, iRightArmBones, 4, Color::Rainbow());
+
+			DrawBone(pEntity, iHeadBones, 3, Color::Rainbow());
+
+			DrawBone(pEntity, iLeftLegBones, 3, Color::Rainbow());
+			DrawBone(pEntity, iRightLegBones, 3, Color::Rainbow());
+		}
 	}
 
 	Vector b = pLocal->GetAbsAngles();
@@ -449,13 +470,22 @@ void CESP::DrawModelExecute(const DrawModelState_t& state, const ModelRenderInfo
 		std::uint8_t team = entity->GetTeamNum();
 		std::uint8_t localteam = pLocalEntity->GetTeamNum();
 
+		SColor color = player_mat.bDef ? colors_team_light[team] : player_mat.color;
+
+		if (localplayer.value && entity == pLocalEntity)
+		{
+			gMat.ForceMaterial(color, desired);
+		}
+
 		if (gESP.enemyonly.value && team == localteam)
 			return;
 
-		SColor color = player_mat.bDef ? colors_team_light[team] : player_mat.color;
-
 		desired->SetMaterialVarFlag(MATERIAL_VAR_IGNOREZ, player_enabled.value != 1);
-		gMat.ForceMaterial(color, desired);
+		
+		if (entity != pLocalEntity)
+		{
+			gMat.ForceMaterial(color, desired);
+		}
 
 		if (player_enabled.value != 1)
 		{

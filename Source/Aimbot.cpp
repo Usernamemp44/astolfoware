@@ -29,9 +29,11 @@ Vector CAimbot::EstimateAbsVelocity(CBaseEntity* entity)
 void CAimbot::Projectile(CBaseEntity* local_player, CBaseEntity* entity, CBaseCombatWeapon* local_weapon, Vector& vec_hitbox)
 {
 	auto item_index = local_weapon->GetItemDefinitionIndex();
-	auto get_speed = [&local_player, &local_weapon, &entity, &item_index]() -> float {
+	auto get_speed = [&local_player, &local_weapon, &entity, &item_index]() -> float 
+	{
 		auto weapon_speed = 0.0f;
-		switch (item_index) {
+		switch (item_index) 
+		{
 		case WPN_DirectHit:
 			weapon_speed = 1980.0f; break;
 		case WPN_BotRocketlauncherB:
@@ -259,7 +261,6 @@ void CAimbot::Run(CBaseEntity* pLocal, CUserCmd* pCommand)
 #pragma region scout
 			id == (int)scoutweapons::WPN_Sandman
 			|| id == (int)scoutweapons::WPN_CritCola
-			|| id == (int)scoutweapons::WPN_CritCola
 			|| id == (int)scoutweapons::WPN_FlyingGuillotine1
 			|| id == (int)scoutweapons::WPN_FlyingGuillotine2
 			|| id == (int)scoutweapons::WPN_Milk
@@ -346,9 +347,6 @@ void CAimbot::Run(CBaseEntity* pLocal, CUserCmd* pCommand)
 	if (iBestHitbox == -1)
 		return;
 
-
-	if (iBestHitbox == -1)
-		return;
 	Vector vEntity = pEntity->GetHitboxPosition(iBestHitbox);
 
 	Vector vLocal = pLocal->GetEyePosition();
@@ -383,12 +381,26 @@ void CAimbot::Run(CBaseEntity* pLocal, CUserCmd* pCommand)
 	{
 		float flCurTime = gInts.Engine->Time();
 		static float flNextSend = 0.0f;
-		if (pLocal->IsScoped() && pLocal->szGetClass() == "Sniper")
+		if (pLocal->szGetClass() == "Sniper")
 		{
-			if (flCurTime > flNextSend)
+			if (zoomedonly.value == false)
 			{
-				pCommand->buttons |= IN_ATTACK;
-				flNextSend = (flCurTime + 0.2f); // this is retarded but fuck it 
+				if (flCurTime > flNextSend)
+				{
+					pCommand->buttons |= IN_ATTACK;
+					flNextSend = (flCurTime + 0.2f); // this is retarded but fuck it 
+				}
+			}
+			else if (zoomedonly.value == true)
+			{
+				if (pLocal->IsScoped())
+				{
+					if (flCurTime > flNextSend)
+					{
+						pCommand->buttons |= IN_ATTACK;
+						flNextSend = (flCurTime + 0.2f);
+					}
+				}
 			}
 		}
 		if (pLocal->szGetClass() != "Sniper") // yey
@@ -449,7 +461,7 @@ int CAimbot::GetBestTarget(CBaseEntity* pLocal, CUserCmd* pCommand)
 
 		if (iBestHitbox == -1)
 			continue;
-
+		
 		Vector vEntity = pEntity->GetHitboxPosition(iBestHitbox);
 
 		if (!gCvars.PlayerMode[i])
@@ -539,16 +551,30 @@ int CAimbot::GetBestHitbox(CBaseEntity* pLocal, CBaseEntity* pEntity)
 
 	if (GAME_TF2)
 	{
-		if (!hitbox.value)
+		if (hitbox.value == 0)
 		{
-			if (Utils::IsHeadshotWeapon(pLocal, pLocal->GetActiveWeapon()))
-				iBestHitbox = 0;
-			else
-				iBestHitbox = 4;
-			for (int i = iBestHitbox; i < 17; i++) // int i equals prioritized hitbux, so above we check the weapon so it prioritizes the proper hitbox.
+			if (Utils::IsVisible(pLocal, pEntity, pLocal->GetEyePosition(), pEntity->GetHitboxPosition(0)))
+			{ 
+				if (pLocal->IsScoped())
+					iBestHitbox = 0; 
+				else
+				{
+					iBestHitbox = 4;
+					for (int i = iBestHitbox; i < 17; i++) // int i equals prioritized hitbux, so above we check the weapon so it prioritizes the proper hitbox.
+					{
+						if (Utils::IsVisible(pLocal, pEntity, pLocal->GetEyePosition(), pEntity->GetHitboxPosition(i)))
+							return i;
+					}
+				}
+			}
+			else 
 			{
-				if (Utils::IsVisible(pLocal, pEntity, pLocal->GetEyePosition(), pEntity->GetHitboxPosition(i)))
-					return i;
+				iBestHitbox = 4;
+				for (int i = iBestHitbox; i < 17; i++) // int i equals prioritized hitbux, so above we check the weapon so it prioritizes the proper hitbox.
+				{
+					if (Utils::IsVisible(pLocal, pEntity, pLocal->GetEyePosition(), pEntity->GetHitboxPosition(i)))
+						return i;
+				}
 			}
 		}
 		else if (hitbox.value == 1)
