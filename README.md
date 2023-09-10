@@ -11,4 +11,5 @@ A NaCl paste made by username.mp4 and Reality / Trollsec.
 # Credits
 1. Reality (Main Dev,  owner of astolfoware)
 2. Username.mp4
-3. Callie
+3. [Dr_Coomer](https://github.com/yoshisaac)
+4. Callie
